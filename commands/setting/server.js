@@ -12,7 +12,7 @@ module.exports = {
 
     let list = `총 서버 수: ${serverList.size}\n\n`
     serverList.forEach(guild => {
-      list+=`- **${guild.name}** (${guild.id})${interaction.client.blackListedServers.has(guild.id)?' [차단됨]':''}\n`
+      list+=`- **${guild.name}** (${guild.id})\n`
     });
 
     const embed = new EmbedBuilder()

@@ -1,4 +1,4 @@
-const {clientId} = require('../../config.json')
+const {clientId,kbot_token} = require('../../config.json')
 
 module.exports= {
   name:'서버수갱신',
@@ -11,7 +11,7 @@ module.exports= {
     const res = await fetch(url,{
       method:'POST',
       headers:{
-        "Authorization":'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyODU1ODEwNTA3MzA1MTI0NDUiLCJpYXQiOjE3MjY2Mjk3NDB9.IcFWA20xlx7LyT6o4L39wzc7a5-y9unhO1FIrkJOKScWRCXaDDD4b5XsIwZ7bb4srdzvMaNUP6RXYL3Pw1W7FsGiQd0dfWphk8Nco7dqHq32rv2Y5H1aJF9idO2l2cjsi3MFn1CC3hLeK_hsGBdsFUcyHKv93B58Va7zkbw2uYo',
+        "Authorization":kbot_token,
         'Content-Type': "application/json"
       },
       body: JSON.stringify({
