@@ -1,5 +1,5 @@
 {
-  "clientId": "어플 아이디",
+	"clientId": "어플 아이디",
 	"guildId": "서버 아이디",
 	"token": "봇 토큰"
 }
