@@ -34,8 +34,10 @@ module.exports = {
             result='하급원석'
           }else if(ran<=0.95){
             result='중급원석'
-          }else{
+          }else if(ran<=0.99){
             result='상급원석'
+          }else{
+            result='수상한 원석'
           }
           break;
         case '하급원석':
@@ -46,6 +48,9 @@ module.exports = {
           break;
         case '상급원석':
           result = GemData['epic'][Math.floor(Math.random()*GemData['epic'].length)]
+          break;
+        case '수상한 원석':
+          result = GemData['unknown'][Math.floor(Math.random()*GemData['unknown'].length)]
           break;
       }
       
