@@ -1,7 +1,7 @@
 const { EmbedBuilder,ActionRowBuilder,ButtonBuilder } = require('discord.js')
 const Database = require('better-sqlite3')
 module.exports = {
-  name:"notice",
+  name:"boost",
   async execute(interaction){
     const {guildId,channelId}= interaction
 
@@ -10,27 +10,27 @@ module.exports = {
       .get(guildId,channelId)
     
     if(!channel){
-      channel = {notice:1,boost:0}
-      db.prepare("INSERT INTO channel (server,channel,notice) VALUES (?,?,?)")
+      channel = {notice:0,boost:1}
+      db.prepare("INSERT INTO channel (server,channel,boost) VALUES (?,?,?)")
       .run(guildId,channelId,1)
     }else{
-      if(channel.notice){
-        if(channel.boost===1){
-          db.prepare("UPDATE channel SET notice=? WHERE server=? AND channel=?")
+      if(channel.boost){
+        if(channel.notice===1){
+          db.prepare("UPDATE channel SET boost=? WHERE server=? AND channel=?")
           .run(0,guildId,channelId)
         }else{
           db.prepare("DELETE FROM channel WHERE server=? AND channel=?")
           .run(guildId,channelId)
         }
-        channel.notice=0
+        channel.boost=0
       }else{
-          db.prepare("UPDATE channel SET notice=? WHERE server=? AND channel=?")
+          db.prepare("UPDATE channel SET boost=? WHERE server=? AND channel=?")
           .run(1,guildId,channelId)
-          channel.notice=1
+          channel.boost=1
       }
     }
 
-  const embed = new EmbedBuilder()
+    const embed = new EmbedBuilder()
     .setColor('Blurple')
     .setTitle('채널 설정')
     .setDescription(

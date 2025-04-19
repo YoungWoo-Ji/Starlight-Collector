@@ -12,6 +12,7 @@ module.exports = {
 
     const id = message.author.id
     const server = message.guildId
+    const channel = message.channelId
 
     const db = new Database('DB/user.db')
     const find = db.prepare("SELECT * FROM break WHERE user_id=? AND server=?")
@@ -19,11 +20,17 @@ module.exports = {
     
     if(!find) return
 
-    const update = db.prepare("UPDATE break SET count=count+1 WHERE user_id=? AND server=?")
-      .run(id,server)
+    const is_boost = db.prepare('SELECT * FROM channel WHERE server=? AND channel=? AND boost=?')
+      .get(server,channel,1)
+    
+    let add_count = 1
+    if(is_boost) add_count=2
+
+    const update = db.prepare("UPDATE break SET count=count+? WHERE user_id=? AND server=?")
+      .run(add_count,id,server)
     
     //세공 완료
-    if(ItemData[find.item].count === find.count+1){
+    if(ItemData[find.item].count <= find.count+1){
       const d_item = db.prepare("DELETE FROM break WHERE user_id=? AND server=?")
         .run(id,server)
       let result
@@ -79,7 +86,7 @@ module.exports = {
           `<@${id}>님 ${find.item} 세공이 완료되었어요!\n\n`+
           `- 세공 결과물: ${result}\n`+
           `- 등급: ${tier[ItemData[result].tier]}\n`+
-          `- 채팅횟수: ${find.count+1}회`
+          `- 채팅횟수: ${ItemData[find.item].count}회`
         )
         .setTimestamp()
         .setThumbnail('attachment://item.png')
@@ -100,21 +107,15 @@ module.exports = {
       if(['수상한 원석','상급원석','중급원석','하급원석'].indexOf(result)===-1){
         const is_gem_exist=db.prepare('SELECT * FROM dex WHERE user_id=? AND server=? AND gem=?').get(id,server,result)
         if(!is_gem_exist){
-          db.prepare('INSERT INTO dex (user_id,server,gem) VALUES (?,?,?)').run(id,server,result)
           const total_collect = db.prepare('SELECT * FROM dex WHERE user_id=? AND server=?').all(id,server).length
           const total = Object.keys(ItemData).length-6
           const embed2 = new EmbedBuilder()
             .setColor('Blurple')
             .setTimestamp()
-            .setTitle('🎉 새로운 보석이 도감에 등록되었습니다!')
-            .setDescription(`<@${id}>님 **${result}** 이(가) 새로 도감에 등록되었어요!\n(**${result} 1개가 도감 등록에 사용되었습니다.**)\n\n`+
-              `- 수집한 보석 수: ${total_collect}개\n`+
-              `- 남은 보석 수: ${total-total_collect}개\n`
-            )
-            .setFooter({text:'/도감 명령어로 수집한 보석을 확인하세요'})
+            .setTitle('🎉 새로운 보석을 발견했습니다!')
+            .setDescription(`<@${id}>님 도감에 등록되지 않은 새로운 보석을 찾았어요!\n\n\`/도감등록\` 명령어로 **${result}**을(를) 도감에 등록해보세요!\n\n`)
             .setThumbnail('attachment://item.png')
           const file2 = new AttachmentBuilder(`asset/${result}-export.png`,{name:'item.png'})
-          db.prepare('DELETE FROM inventory WHERE user_id=? AND server=? AND item=?').run(id,server,result)
           for(const _channel of channels){
             try{
               const guild = client.guilds.cache.get(server)

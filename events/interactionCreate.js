@@ -77,7 +77,7 @@ module.exports = {
 			//customId에 유저 id 포함
 			if(customId.length >= 2){
 				if(customId[1]!==interaction.user.id){
-					interaction.reply({content:"해당 버튼은 버튼 생성 유저만 상호작용 가능합니다.",ephemeral:true})
+					interaction.reply({content:"해당 버튼을 사용할 수 있는 권한이 없습니다.",ephemeral:true})
 					return
 				}
 			}

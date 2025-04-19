@@ -33,7 +33,7 @@ module.exports = {
     //보석인지 여부
     if(ItemData[gem_name].type!='gem'){
       db.close()
-      await interaction.reply({ephemeral:true, content:'⚠️ 해당 물품품은 분해할 수 없습니다.'})
+      await interaction.reply({ephemeral:true, content:'⚠️ 해당 물품은 분해할 수 없습니다.'})
       return
     }
 

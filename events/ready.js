@@ -1,3 +1,4 @@
+const Database = require('better-sqlite3');
 const { Events, ActivityType } = require('discord.js');
 
 module.exports = {
@@ -13,6 +14,12 @@ module.exports = {
 			}],
 			status:'online'
 		})
+
+		// 거래내역 삭제
+		const db = new Database('DB/user.db')
+		db.prepare('DELETE FROM trade').run()
+		db.close()
+		console.log('Cleared all trade data')
 
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 	},
