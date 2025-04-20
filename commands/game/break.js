@@ -23,7 +23,7 @@ module.exports = {
     const is_exist = db.prepare('SELECT * FROM inventory WHERE user_id=? AND server=? AND item=?')
       .get(id,server,gem_name)
 
-    //보석 소지 여부부
+    //보석 소지 여부
     if(!is_exist){
       db.close()
       await interaction.reply({ephemeral:true, content:'⚠️ 해당 이름의 보석을 가지고 있지 않습니다.'})
@@ -56,6 +56,11 @@ module.exports = {
     }
    
     const result_item = '보석 조각'
+    //보석 제거
+    db.prepare("UPDATE inventory SET count=count-1 WHERE user_id=? AND server=? AND item=?")
+      .run(id,server,gem_name)
+    db.prepare("DELETE FROM inventory WHERE count=?")
+      .run(0)
     //아이템 추가
     const find = db.prepare('SELECT * FROM inventory WHERE user_id=? AND server=? AND item=?')
       .get(id,server,result_item)
