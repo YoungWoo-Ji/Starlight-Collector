@@ -18,7 +18,7 @@ module.exports = {
       .run(interaction.user.id,interaction.guildId,'돌 조각',1)
     
     const embed = new EmbedBuilder()
-      .setTitle('거래 완료!')
+      .setTitle('💰 거래 완료!')
       .setColor('Blurple')
       .setTimestamp()
       .setDescription(

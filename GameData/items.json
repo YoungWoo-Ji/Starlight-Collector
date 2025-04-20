@@ -7,22 +7,22 @@
   "하급원석":{
     "type":"stone",
     "tier":"none",
-    "count":100
+    "count":150
   },
   "중급원석":{
     "type":"stone",
     "tier":"none",
-    "count":200
+    "count":300
   },
   "상급원석":{
     "type":"stone",
     "tier":"none",
-    "count":400
+    "count":600
   },
   "수상한 원석":{
     "type":"stone",
     "tier":"none",
-    "count":500
+    "count":800
   },
   "보석 조각":{
     "type":"etc",
