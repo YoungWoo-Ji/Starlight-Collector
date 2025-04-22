@@ -22,6 +22,9 @@ module.exports = {
     //channel에서 삭제
     db.prepare('DELETE FROM channel WHERE server=?')
       .run(id)
+    //reward에서 삭제
+    db.prepare('DELETE FROM reward WHERE server=?')
+      .run(id)
 
     db.close()
 

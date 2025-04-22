@@ -26,6 +26,9 @@ module.exports = {
     //dex에서 삭제
     db.prepare('DELETE FROM dex WHERE user_id=? AND server=?')
       .run(interaction.user.id,interaction.guildId)
+    //reward에서 삭제
+    db.prepare('DELETE FROM reward WHERE user_id=? AND server=?')
+      .run(interaction.user.id,interaction.guildId)
 
     db.close()
 

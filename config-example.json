@@ -2,5 +2,6 @@
 	"clientId": "어플 아이디",
 	"guildId": "서버 아이디",
 	"token": "봇 토큰",
-	"kbot_token": "한국 디스코드 리스트 토큰"
+	"kbot_token": "한국 디스코드 리스트 토큰",
+	"discord_invite_code":"공식 디스코드 서버 초대 코드"
 }
