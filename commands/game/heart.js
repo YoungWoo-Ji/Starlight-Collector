@@ -42,7 +42,7 @@ module.exports = {
           .setStyle(ButtonStyle.Link)
           .setEmoji('♥️')
           .setLabel('투표하기')
-          .setURL('https://koreanbots.dev/bots/'+clientId)
+          .setURL('https://koreanbots.dev/bots/'+clientId+'/vote')
           
         await interaction.followUp({embeds:[embed], components:[new ActionRowBuilder().addComponents(link)]})
       }

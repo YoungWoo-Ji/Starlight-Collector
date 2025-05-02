@@ -26,7 +26,7 @@ module.exports = {
         {name:'제작일', value:`${createAt.getFullYear()}년 ${createAt.getMonth()+1}월 ${createAt.getDate()}일`,inline:true},
         {name:'참여한 서버 수',value:`${interaction.client.guilds.cache.size}개`,inline:true},
         {name:'수집가 수', value:`${users.length}명`,inline:true},
-        {name:'제작자',value:`${client.application.owner.tag}`,inline:true},
+        {name:'제작자',value:'**지영우**@jiyoungwoo',inline:true},
         {name:'핑',value:`${client.ws.ping}ms`,inline:true}
       )
       .setThumbnail(client.user.avatarURL())
