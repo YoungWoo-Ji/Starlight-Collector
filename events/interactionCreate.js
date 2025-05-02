@@ -16,7 +16,7 @@ module.exports = {
 			if(['시작하기','채널설정'].indexOf(interaction.commandName)==-1){
 				const db = new Database('DB/user.db')
 				const find = db.prepare('SELECT * FROM user WHERE user_id=? AND server=?').get(interaction.user.id,interaction.guildId)
-				db.close
+				db.close()
 				if(!find){
 					interaction.reply({content:'⚠️ 해당 명령어는 등록된 회원만 사용 가능합니다.\n\'/시작하기\' 명령어로 정보를 등록해주세요.',ephemeral:true})
 					return
