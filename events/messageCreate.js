@@ -112,7 +112,7 @@ module.exports = {
           const embed2 = new EmbedBuilder()
             .setColor('Blurple')
             .setTimestamp()
-            .setTitle('🎉 새로운 보석을 발견했습니다!')
+            .setTitle('🔍 새로운 보석을 발견했습니다!')
             .setDescription(`<@${id}>님 도감에 등록되지 않은 새로운 보석을 찾았어요!\n\n\`/도감등록\` 명령어로 **${result}**을(를) 도감에 등록해보세요!\n\n`)
             .setThumbnail('attachment://item.png')
           const file2 = new AttachmentBuilder(`asset/${result}-export.png`,{name:'item.png'})
