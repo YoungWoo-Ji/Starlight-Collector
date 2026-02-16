@@ -10,13 +10,10 @@ module.exports = {
     await interaction.client.guilds.fetch()
     const serverList = interaction.client.guilds.cache
 
-    let list = `총 서버 수: ${serverList.size}\n\n`
-    serverList.forEach(guild => {
-      list+=`- **${guild.name}** (${guild.id})\n`
-    });
+    let list = `총 서버 수: ${serverList.size}`
 
     const embed = new EmbedBuilder()
-      .setTitle('서버 목록')
+      .setTitle('서버 수')
       .setDescription(list)
       .setColor('Blurple')
     
