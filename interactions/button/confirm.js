@@ -35,7 +35,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setColor('Blurple')
       .setTitle('탈퇴가 완료되었습니다.')
-      .setDescription('그동안 보여주신 수집가로서의 열정에 깊이 감사드립니다.\n언제든지, 다시 그 열정이 불타오를 때 이곳으로 돌아와 주세요.')
+      .setDescription('그동안 별빛 수집가를 이용해 주셔서 감사합니다.')
 
     await interaction.update({embeds:[embed],components:[]})
   }
