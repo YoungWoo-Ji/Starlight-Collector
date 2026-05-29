@@ -19,7 +19,14 @@ module.exports = {
     const id = interaction.user.id
     const server = interaction.guildId
     const db = new Database('DB/user.db')
-    
+
+	// 등록 가능 아이템인지 확인
+	const banned_item = ["돌 조각","보석 조각","하급원석","중급원석","상급원석","수상한 원석"]
+	if(banned_item.indexOf(gem) !== -1){
+		await interaction.reply({ephemeral:true,content:"⚠️ 해당 아이템은 도감에 등록할 수 없습니다."})
+		return
+	}
+		
     // 소지 여부 확인
     const your_item = db.prepare('SELECT * FROM inventory WHERE user_id=? AND server=? AND item=?')
       .get(id,server,gem)
