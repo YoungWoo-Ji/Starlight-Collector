@@ -41,5 +41,5 @@
    ```
 6. **봇 실행**
    ```bash
-   node index.js
+   pm2 start index.js --name bot
    ```
