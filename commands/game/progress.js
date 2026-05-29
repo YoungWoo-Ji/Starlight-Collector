@@ -33,7 +33,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle('💎 세공 상태')
       .setColor('Blurple')
-      .setDescription('현제 '+item.item+' 의 세공 상태입니다')
+      .setDescription('현재 '+item.item+' 의 세공 상태입니다')
       .setThumbnail("attachment://item.png")
       .setTimestamp()
       .addFields({name:'세공 상태',value:'```\n'+
