@@ -24,14 +24,14 @@ module.exports = {
         .setRequired(true)
         .setAutocomplete(true)
     ),
-  async autocomplete(interaction){
-    const db = new Database('DB/user.db')
-    let inv = db.prepare('SELECT item FROM inventory WHERE user_id=? AND server = ?')
-      .all(interaction.user.id,interaction.guildId)
-    inv = inv.map(e=>e.item)
-    inv = inv.filter(e=>ItemData[e].type=='stone')
-    await interaction.respond(inv.map(e=>({name:e,value:e})))
-  },
+  async autocomplete(interaction) {
+    const items = ["돌 조각", "하급원석", "중급원석", "상급원석", "수상한 원석"];
+    const focusedValue = interaction.options.getFocused();
+    const filtered = items.filter(item => item.includes(focusedValue));
+    await interaction.respond(
+        filtered.map(e => ({ name: e, value: e }))
+    );
+},
 	async execute(interaction) {
     const item = interaction.options.getString("이름")
 
