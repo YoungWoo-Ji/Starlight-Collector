@@ -140,8 +140,8 @@ module.exports = {
         for(const item of Object.keys(target_data)){
           delete_item.run(target_data[item],target_trade_data.user_id,server,item)
         }
-        db.prepare('DELETE FROM inventory WHERE count=?')
-          .run(0)
+        db.prepare('DELETE FROM inventory WHERE user_id IN (?,?) AND server=? AND count=?')
+          .run(your_id, target_trade_data.user_id, server, 0)
 
         //아이템 추가
         const add_new_item = db.prepare('INSERT INTO inventory (user_id,server,item,count) VALUES (?,?,?,?)')
@@ -158,7 +158,7 @@ module.exports = {
           if(!find_item.get(target_trade_data.user_id,server,item)){
             add_new_item.run(target_trade_data.user_id,server,item,your_data[item])
           }else{
-            add_item.run(your_data[item],target_trade_data.id,server,item)
+            add_item.run(your_data[item],target_trade_data.user_id,server,item)
           }
         }
 
